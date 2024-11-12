@@ -1,0 +1,6 @@
+res://game.tscn
+res://data/scripts/player.gd
+res://data/scenes/player.tscn
+res://data/scenes/pipe.tscn
+res://data/scripts/pipe.gd
+res://game.gd

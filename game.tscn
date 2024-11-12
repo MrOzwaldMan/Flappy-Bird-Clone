@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwmapr8dsjvl7"]
+
+[ext_resource type="PackedScene" uid="uid://bw6o0n1ujc3jv" path="res://data/scenes/player.tscn" id="1_3srvi"]
+[ext_resource type="Script" path="res://game.gd" id="1_ij84a"]
+[ext_resource type="Texture2D" uid="uid://7su2q4xj67mi" path="res://assets/sprites/background-day.png" id="2_18fao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lf4nb"]
+size = Vector2(44, 904)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ij84a")
+
+[node name="Player" parent="." instance=ExtResource("1_3srvi")]
+position = Vector2(181, 300)
+scale = Vector2(1.25, 1.25)
+
+[node name="Background" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(672.345, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(0, -145)
+scale = Vector2(2.43403, 1.7832)
+texture = ExtResource("2_18fao")
+centered = false
+
+[node name="Pipes" type="Node" parent="."]
+
+[node name="Pipe Spawn Timer" type="Timer" parent="."]
+wait_time = 1.2
+autostart = true
+
+[node name="Destroy Pipe Area" type="Area2D" parent="."]
+position = Vector2(-34, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Destroy Pipe Area"]
+position = Vector2(0, 304)
+shape = SubResource("RectangleShape2D_lf4nb")
+
+[connection signal="timeout" from="Pipe Spawn Timer" to="." method="_on_pipe_spawn_timer_timeout"]
+[connection signal="area_entered" from="Destroy Pipe Area" to="." method="_on_destroy_pipe_area_area_entered"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw6o0n1ujc3jv"]
+
+[ext_resource type="Script" path="res://data/scripts/player.gd" id="1_op7by"]
+[ext_resource type="Texture2D" uid="uid://d2kpt1ruv87f8" path="res://assets/sprites/bluebird-midflap.png" id="2_8yn3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfscc"]
+size = Vector2(34, 24)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_op7by")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8yn3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jfscc")
