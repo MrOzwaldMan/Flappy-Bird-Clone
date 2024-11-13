@@ -1,7 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw6o0n1ujc3jv"]
+[gd_scene load_steps=8 format=3 uid="uid://bw6o0n1ujc3jv"]
 
 [ext_resource type="Script" path="res://data/scripts/player.gd" id="1_op7by"]
-[ext_resource type="Texture2D" uid="uid://d2kpt1ruv87f8" path="res://assets/sprites/bluebird-midflap.png" id="2_8yn3p"]
+[ext_resource type="Texture2D" uid="uid://o2ub3ka5u5sn" path="res://assets/sprites/yellowbird-downflap.png" id="2_h30um"]
+[ext_resource type="Texture2D" uid="uid://becogt38sof8u" path="res://assets/sprites/yellowbird-midflap.png" id="3_vyhq8"]
+[ext_resource type="Texture2D" uid="uid://ba0dwvshfbq3" path="res://assets/sprites/yellowbird-upflap.png" id="4_iwkpm"]
+[ext_resource type="AudioStream" uid="uid://drhssb2njdbv7" path="res://assets/audio/wing.wav" id="5_yq145"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yr0jo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h30um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vyhq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iwkpm")
+}],
+"loop": true,
+"name": &"flapping",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfscc"]
 size = Vector2(34, 24)
@@ -9,8 +29,13 @@ size = Vector2(34, 24)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_op7by")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8yn3p")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yr0jo")
+animation = &"flapping"
+autoplay = "flapping"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jfscc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_yq145")

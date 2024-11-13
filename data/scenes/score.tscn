@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjrtmbn1tco3g"]
+
+[ext_resource type="Script" path="res://data/scripts/score.gd" id="1_a2gnb"]
+
+[node name="Score" type="Label"]
+offset_left = 545.0
+offset_right = 574.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+script = ExtResource("1_a2gnb")
